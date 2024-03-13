@@ -11,21 +11,17 @@ use App\Models\Url;
 
 class UrlShortenTest extends TestCase
 {   
-    protected $CreateShortUrlService;
-
-    /*public function __construct()
-    {
-        $this->CreateShortUrlService = new CreateShortUrlService();
-    }*/
     /**
-     * A basic feature test example.
+     * Test validation then passing empty string.
      */
-
     public function test_not_creating_short_url_on_empty_string(): void {
 
         $this->post('/api/shorten-url', ['orginal_url' => '', ])->assertStatus(302);
     }
 
+    /**
+     * Test or not creating same record in databse if orginal url is already exist.
+     */
     public function test_or_not_creating_duplicate(): void
     {
         $firstUrl = Url::firstOrFail();
