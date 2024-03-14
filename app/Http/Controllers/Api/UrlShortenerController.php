@@ -11,17 +11,15 @@ use App\Models\Url;
 
 class UrlShortenerController extends Controller
 {   
-    public $sessionMessage = null;
-
     public function store(UrlStoreRequest $request, CreateShortUrlService $CreateShortUrlService)
     {   
         $url = $CreateShortUrlService->checkOrIsNotDuplicate($request->orginalUrl);
 
-        $this->sessionMessage = __('Nuoroda pridėta');
+        $sessionMessage = session()->flash('success', __('Nuoroda pridėta'));
 
         return response()->json([
             'data' => $url,
-            'sessionMessage' => $this->sessionMessage
+            'sessionMessage' => $sessionMessage
         ]);
     }
 }

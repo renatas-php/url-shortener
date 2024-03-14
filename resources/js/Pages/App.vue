@@ -11,7 +11,7 @@
             :placeholder="'Įveskite nuorodą'"
             @update:modelValue="(newValue) => (orginalUrl = newValue)">
         </Input>
-        <a :href="results.data.orginal_url" target="_blank" v-if="results.data" class="unerline text-[22px] lg:text-[36px] mt-[16px] ">{{ results.data }}</a>
+        <a :href="results.data" target="_blank" v-if="results.data" class="unerline text-[22px] lg:text-[36px] mt-[16px] ">{{ results.data }}</a>
         <CtaButton 
             :title="'Trumpink'"
             :addUrl="addUrl"
@@ -36,7 +36,7 @@ const props = defineProps({
 });
 
 // Refs
-const results = ref('');
+const results = ref({});
 const errors = ref({});
 const addUrl = ref(false);
 const orginalUrl = ref('');

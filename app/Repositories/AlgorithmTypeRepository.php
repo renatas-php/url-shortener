@@ -11,4 +11,9 @@ class AlgorithmTypeRepository implements AlgorithmTypeRepositoryInterface {
     {
         return Str::random(6);
     }
+
+    public function standardMaximum(): string 
+    {
+        return 'Hey' . Str::random(3);
+    }
 }

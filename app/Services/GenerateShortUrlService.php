@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Config;
+
 use App\Repositories\AlgorithmTypeRepository;
 
 use App\Models\Url;
@@ -11,12 +13,12 @@ class GenerateShortUrlService {
     private $algorithmTypeRepository;
 
     public function __construct() {
-        $this->algorithmTypeRepository = new AlgorithmTypeRepository();//$algorithmTypeRepository;
+        $this->algorithmTypeRepository = new AlgorithmTypeRepository();
     }
 
     public function generateUrl(string $orginalUrl): string
     {
-        $shortUrl = $this->algorithmTypeRepository->standard();
+        $shortUrl = $this->algorithmTypeRepository->standardMaximum();
 
         $existShortUrl = Url::select('short_url')->where('short_url', $shortUrl)->first();
         if(!$existShortUrl) 
@@ -30,7 +32,7 @@ class GenerateShortUrlService {
 
     protected function urlPrefix(): string
     {   
-        return env('APP_URL') . '/';
+        return Config::get('app.url') . '/';
     }
 
 }

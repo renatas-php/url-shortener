@@ -5,6 +5,6 @@
 </template>
 <script setup>
     defineProps({
-        errors: Array,
+        errors: Object,
     });
 </script>
